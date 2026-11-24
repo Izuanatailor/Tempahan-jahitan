@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selamat Datang ke Izuanatailor — Jahitan Dengan Hati</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Dancing+Script:wght@600;700&family=Lora:ital,wght@0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700&family=Nunito:wght@400;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['var(--font-body)', '"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['var(--font-heading)', '"Playfair Display"', 'serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FAF7F2',
+              100: '#F3EDE3',
+              200: '#E6DDD0',
+            },
+            rose: {
+              dusty: '#C88A8E',
+              light: '#F6E5E8',
+              dark: '#B27277',
+            },
+            burgundy: {
+              700: '#8F3849',
+              800: '#7A2E3D',
+              900: '#5C202C',
+            },
+            charcoal: {
+              700: '#4A464B',
+              800: '#383439',
+              900: '#2D2A2E',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --body-size: 15px;
+    }
+
+    body {
+      background-color: #FAF7F2;
+      color: #2D2A2E;
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      scroll-behavior: smooth;
+    }
+
+    .font-serif {
+      font-family: var(--font-heading) !important;
+    }
+
+    .glass-nav {
+      background: rgba(250, 247, 242, 0.96);
+      backdrop-filter: blur(12px);
+    }
+
+    .burgundy-gradient {
+      background: linear-gradient(135deg, #8F3849 0%, #7A2E3D 60%, #5C202C 100%);
+    }
+
+    .rose-soft-gradient {
+      background: linear-gradient(180deg, #F6E5E8 0%, #FAF7F2 100%);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #FAF7F2;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #C88A8E;
+      border-radius: 9999px;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only-card {
+        box-shadow: none !important;
+        border: 1px solid #d1d5db !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-burgundy-800 selection:text-white">
+
+  <!-- Bekas Notifikasi Toast -->
+  <div id="toast-container" class="no-print fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- ========================================================= -->
+  <!-- 1. BAR NAVIGASI ATAS (SENTIASA BOLEH DIKLIK & JELAS)     -->
+  <!-- ========================================================= -->
+  <header id="top" class="no-print sticky top-0 z-40 glass-nav border-b border-cream-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-3 sm:px-5 py-3 flex flex-wrap items-center justify-between gap-2">
+      <!-- Identiti Jenama -->
+      <button type="button" onclick="navigateTo('tempahan')" class="flex items-center gap-2.5 text-left group focus:outline-none">
+        <div class="w-9 h-9 rounded-xl burgundy-gradient flex items-center justify-center text-rose-light shadow-sm group-hover:scale-105 transition shrink-0">
+          <i data-lucide="crown" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span id="nav-shop-name" class="font-serif text-lg sm:text-xl font-bold text-charcoal-900 leading-none block">Izuanatailor</span>
+          <span id="nav-shop-tagline" class="text-[10px] font-bold uppercase tracking-widest text-burgundy-800 mt-0.5 block">Jahitan Dengan Hati</span>
+        </div>
+      </button>
+
+      <!-- Tab Navigasi Utama -->
+      <nav aria-label="Navigasi Utama" class="flex items-center gap-1.5 sm:gap-2">
+        <button
+          type="button"
+          id="nav-tab-tempahan"
+          onclick="navigateTo('tempahan')"
+          class="px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-burgundy-800 text-white shadow-xs"
+        >
+          <i data-lucide="scissors" class="w-3.5 h-3.5"></i>
+          <span>Tempahan</span>
+        </button>
+
+        <button
+          type="button"
+          id="nav-tab-semak"
+          onclick="navigateTo('semak')"
+          class="px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-cream-100 hover:bg-cream-200 text-charcoal-900 border border-cream-200"
+        >
+          <i data-lucide="search" class="w-3.5 h-3.5 text-burgundy-800"></i>
+          <span>Semak Tempahan Saya</span>
+        </button>
+
+        <button
+          type="button"
+          id="nav-tab-admin"
+          onclick="navigateTo('admin')"
+          class="relative px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-charcoal-900 hover:bg-charcoal-800 text-cream-50"
+        >
+          <i data-lucide="lock" id="admin-nav-icon" class="w-3.5 h-3.5 text-rose-dusty"></i>
+          <span id="admin-nav-label">Admin</span>
+          <span id="admin-pending-badge" class="hidden -top-1.5 -right-1.5 absolute bg-rose-dusty text-charcoal-900 text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center shadow">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- 2. VIEW A: PAPARAN TEMPAHAN & KATALOG PELANGGAN         -->
+  <!-- ========================================================= -->
+  <main id="view-tempahan" class="flex-1 max-w-5xl w-full mx-auto px-4 py-6 space-y-9">
+
+    <!-- Kad Poster Utama & Jalur Tajuk Selamat Datang Kemas -->
+    <section class="bg-white rounded-3xl border border-cream-200 shadow-md overflow-hidden">
+      <div class="burgundy-gradient text-white px-4 py-2.5 sm:py-3 text-center space-y-0.5">
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-rose-light text-[10px] font-bold uppercase tracking-wider">
+          <i data-lucide="sparkles" class="w-3 h-3"></i> Sistem Tempahan Rasmi Izuanatailor
+        </span>
+        <h1 id="display-main-headline" class="font-serif font-bold tracking-tight text-white leading-tight break-words px-2" style="font-size: 23px;">
+          Selamat Datang ke Izuanatailor
+        </h1>
+        <p id="display-sub-headline" class="text-rose-light font-semibold tracking-wider uppercase leading-snug" style="font-size: 12px;">
+          Jahitan Dengan Hati
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 items-stretch">
+        <!-- Poster Utama di Paling Hadapan -->
+        <div class="md:col-span-6 bg-cream-100 flex flex-col justify-between overflow-hidden border-b md:border-b-0 md:border-r border-cream-200">
+          <div class="flex-1 flex items-center justify-center bg-cream-50">
+            <img
+              id="hero-poster-img"
+              src="1001079099.jpg"
+              onerror="this.onerror=null; this.src='https://placehold.co/700x900/F6E5E8/7A2E3D?text=Selamat+Datang+ke+Izuanatailor+%E2%80%A2+Jahitan+Dengan+Hati';"
+              alt="Poster Rasmi Izuanatailor"
+              class="w-full h-auto max-h-[520px] object-contain md:object-cover object-top"
+            />
+          </div>
+          <div class="bg-charcoal-900 text-cream-50 px-4 py-2.5 flex items-center justify-between text-xs">
+            <span class="font-serif italic text-sm text-rose-light">“Jahit • Ubah • Cantikkan”</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-burgundy-800 text-[10px] font-bold uppercase tracking-wider">Tempahan Dibuka</span>
+          </div>
+        </div>
+
+        <!-- Hook Jahitan, Kata Aluan & Info Butik -->
+        <div class="md:col-span-6 p-6 sm:p-7 flex flex-col justify-between space-y-5 rose-soft-gradient">
+          <div class="space-y-4">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-rose-dusty/50 text-burgundy-800 text-xs font-bold">
+              <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-rose-dark"></i>
+              <span>Baju Baharu • Ubah Suai (Alter) • Jahitan Teliti</span>
+            </div>
+
+            <blockquote id="display-hook-text" class="font-serif text-xl sm:text-2xl font-bold text-charcoal-900 leading-snug italic">
+              “Jahitan adalah seni, setiap jahitan ada cerita. Di Izuanatailor, kami jahit, ubah, dan cantikkan pakaian anda dengan penuh teliti dan sepenuh hati.”
+            </blockquote>
+
+            <p id="display-welcome-text" class="text-sm text-charcoal-700 leading-relaxed">
+              Hai & selamat datang! Sila pilih jenis jahitan atau ubah suai yang anda perlukan di bawah, isi maklumat & ukuran anda, dan hantar tempahan. Izuanatailor akan menyemak, mengesahkan harga serta tarikh siap, dan berkongsi invois khas kepada anda.
+            </p>
+          </div>
+
+          <div class="bg-white/95 rounded-2xl p-4 border border-cream-200 space-y-2 text-xs text-charcoal-800">
+            <div class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-burgundy-800 shrink-0 mt-0.5"></i>
+              <p id="display-shop-address" class="text-charcoal-700">Butik Izuanatailor (Temujanji & Penghantaran Kain/Baju Contoh melalui WhatsApp)</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <i data-lucide="clock" class="w-4 h-4 text-burgundy-800 shrink-0 mt-0.5"></i>
+              <p id="display-shop-hours" class="text-charcoal-700">Isnin – Sabtu (9:00 Pagi – 6:00 Petang) • Tempoh siap 7–14 hari</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-2.5">
+            <button type="button" onclick="scrollToOrderForm()" class="flex-1 py-3.5 px-5 rounded-2xl burgundy-gradient text-white font-bold text-sm shadow-md hover:opacity-95 transition flex items-center justify-center gap-2">
+              <i data-lucide="edit-3" class="w-4 h-4 text-rose-light"></i>
+              <span>Isi Borang Tempahan Sekarang</span>
+            </button>
+            <button type="button" onclick="navigateTo('semak')" class="py-3.5 px-4 rounded-2xl bg-white hover:bg-cream-100 text-charcoal-900 font-bold text-sm border border-cream-200 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="file-check-2" class="w-4 h-4 text-burgundy-800"></i>
+              <span>Semak Status / Invois</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Senarai Servis Jahitan & Anggaran Harga -->
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-burgundy-800">Katalog Upah Jahit</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900">Servis & Harga Izuanatailor</h2>
+        </div>
+        <p class="text-xs text-charcoal-700">Klik mana-mana servis untuk mengisi borang tempahan secara automatik.</p>
+      </div>
+      <div id="public-services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Borang Tempahan Pelanggan (Pelanggan Isi Sendiri Apa Yang Hendak Dilakukan) -->
+    <section id="borang-tempahan-box" class="scroll-mt-24 bg-white rounded-3xl border border-cream-200 shadow-lg p-5 sm:p-8 space-y-6">
+      <div class="border-b border-cream-200 pb-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-burgundy-800">Borang Tempahan Pelanggan</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900">Isi Maklumat Jahitan Yang Anda Mahukan</h2>
+        <p class="text-xs text-charcoal-700 mt-1">Privasi anda dilindungi: selepas menghantar, anda akan mendapat <strong>Kod Rujukan</strong> untuk menyemak status dan invois milik anda sahaja.</p>
+      </div>
+
+      <form id="customer-order-form" onsubmit="handleOrderSubmit(event)" class="space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="ord-name" class="block text-xs font-bold uppercase tracking-wider text-charcoal-900 mb-1.5">Nama Penuh <span class="text-burgundy-700">*</span></label>
+            <input type="text" id="ord-name" required placeholder="Cth: Nurul Aina" class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 focus:bg-white focus:border-burgundy-800 outline-none text-sm" />
+          </div>
+          <div>
+            <label for="ord-phone" class="block text-xs font-bold uppercase tracking-wider text-charcoal-900 mb-1.5">No. Telefon WhatsApp <span class="text-burgundy-700">*</span></label>
+            <input type="tel" id="ord-phone" required placeholder="Cth: 0123456789" class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 focus:bg-white focus:border-burgundy-800 outline-none text-sm" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="ord-service" class="block text-xs font-bold uppercase tracking-wider text-charcoal-900 mb-1.5">Jenis Servis / Apa Yang Hendak Dilakukan <span class="text-burgundy-700">*</span></label>
+            <select id="ord-service" required onchange="updateOrderEstimate()" class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 focus:bg-white focus:border-burgundy-800 outline-none text-sm font-semibold text-charcoal-900"></select>
+          </div>
+          <div>
+            <label for="ord-needed-date" class="block text-xs font-bold uppercase tracking-wider text-charcoal-900 mb-1.5">Tarikh Diperlukan / Majlis <span class="text-burgundy-700">*</span></label>
+            <input type="date" id="ord-needed-date" required class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 focus:bg-white focus:border-burgundy-800 outline-none text-sm" />
+          </div>
+        </div>
+
+        <!-- Cara Ukuran -->
+        <div class="space-y-2.5">
+          <span class="block text-xs font-bold uppercase tracking-wider text-charcoal-900">Cara Ukuran Badan <span class="text-burgundy-700">*</span></span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <label class="cursor-pointer">
+              <input type="radio" name="measure_method" value="Hantar Baju Contoh" checked onchange="toggleCustomMeasureBox()" class="peer sr-only" />
+              <div class="p-3.5 rounded-2xl border border-cream-200 bg-cream-50/50 peer-checked:border-burgundy-800 peer-checked:bg-rose-light/50 text-center transition">
+                <i data-lucide="shirt" class="w-5 h-5 text-burgundy-800 mx-auto mb-1"></i>
+                <span class="text-xs font-bold text-charcoal-900 block">Hantar Baju Contoh</span>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="measure_method" value="Datang Kedai" onchange="toggleCustomMeasureBox()" class="peer sr-only" />
+              <div class="p-3.5 rounded-2xl border border-cream-200 bg-cream-50/50 peer-checked:border-burgundy-800 peer-checked:bg-rose-light/50 text-center transition">
+                <i data-lucide="store" class="w-5 h-5 text-burgundy-800 mx-auto mb-1"></i>
+                <span class="text-xs font-bold text-charcoal-900 block">Datang Kedai</span>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="measure_method" value="Ukuran Sendiri" onchange="toggleCustomMeasureBox()" class="peer sr-only" />
+              <div class="p-3.5 rounded-2xl border border-cream-200 bg-cream-50/50 peer-checked:border-burgundy-800 peer-checked:bg-rose-light/50 text-center transition">
+                <i data-lucide="ruler" class="w-5 h-5 text-burgundy-800 mx-auto mb-1"></i>
+                <span class="text-xs font-bold text-charcoal-900 block">Ukuran Sendiri (Inci)</span>
+              </div>
+            </label>
+          </div>
+
+          <div id="custom-measure-box" class="hidden p-4 rounded-2xl bg-rose-light/40 border border-rose-dusty/40 space-y-2.5">
+            <p class="text-xs font-bold text-burgundy-900">Masukkan Ukuran Badan Anda (Dalam Inci):</p>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+              <div>
+                <label for="m-bahu" class="block text-[11px] font-semibold text-charcoal-800 mb-1">Bahu (")</label>
+                <input type="number" step="0.5" id="m-bahu" placeholder="14.5" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white text-sm" />
+              </div>
+              <div>
+                <label for="m-dada" class="block text-[11px] font-semibold text-charcoal-800 mb-1">Dada (")</label>
+                <input type="number" step="0.5" id="m-dada" placeholder="36" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white text-sm" />
+              </div>
+              <div>
+                <label for="m-pinggang" class="block text-[11px] font-semibold text-charcoal-800 mb-1">Pinggang (")</label>
+                <input type="number" step="0.5" id="m-pinggang" placeholder="28" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white text-sm" />
+              </div>
+              <div>
+                <label for="m-punggung" class="block text-[11px] font-semibold text-charcoal-800 mb-1">Punggung (")</label>
+                <input type="number" step="0.5" id="m-punggung" placeholder="38" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white text-sm" />
+              </div>
+              <div class="col-span-2 sm:col-span-1">
+                <label for="m-labuh" class="block text-[11px] font-semibold text-charcoal-800 mb-1">Labuh (")</label>
+                <input type="number" step="0.5" id="m-labuh" placeholder="39" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white text-sm" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Apa Yang Hendak Dilakukan / Catatan Tambahan -->
+        <div>
+          <label for="ord-notes" class="block text-xs font-bold uppercase tracking-wider text-charcoal-900 mb-1.5">Butiran Apa Yang Hendak Dilakukan / Catatan Tambahan</label>
+          <textarea
+            id="ord-notes"
+            rows="3"
+            placeholder="Contoh: Jahit kurung moden kain chiffon, tambah lining penuh, atau kecilkan pinggang & potong labuh seluar 2 inci..."
+            class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 focus:bg-white focus:border-burgundy-800 outline-none text-sm"
+          ></textarea>
+        </div>
+
+        <!-- Anggaran Harga Awal -->
+        <div class="bg-cream-100 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border border-cream-200">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-burgundy-900">Anggaran Harga Bermula</span>
+            <p class="text-[11px] text-charcoal-700">Harga muktamad, tarikh siap & invois rasmi akan dikemas kini oleh Admin Izuanatailor.</p>
+          </div>
+          <span id="ord-estimate-display" class="font-serif text-2xl sm:text-3xl font-bold text-burgundy-900">RM 85.00</span>
+        </div>
+
+        <button type="submit" class="w-full py-4 px-6 rounded-2xl burgundy-gradient text-white font-bold text-sm sm:text-base shadow-lg hover:opacity-95 transition flex items-center justify-center gap-2">
+          <i data-lucide="send" class="w-5 h-5 text-rose-light"></i>
+          <span>Hantar Tempahan & Dapatkan Kod Rujukan</span>
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- 3. VIEW B: SEMAK TEMPAHAN & INVOIS SAYA (PRIVASI KETAT)   -->
+  <!-- ========================================================= -->
+  <section id="view-semak" class="hidden flex-1 max-w-3xl w-full mx-auto px-4 py-8 space-y-6">
+    <div class="bg-white rounded-3xl border border-cream-200 shadow-md p-6 sm:p-8 space-y-4">
+      <div class="flex items-start justify-between gap-3 border-b border-cream-200 pb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-burgundy-800">Akses Peribadi Pelanggan</span>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900">Semak Tempahan & Invois Saya</h2>
+          <p class="text-xs text-charcoal-700 mt-1">
+            Demi privasi semua pelanggan, anda hanya boleh melihat maklumat tempahan dan invois milik anda sahaja menggunakan <strong>Kod Rujukan</strong> dan <strong>4 digit terakhir no. telefon</strong> (atau melalui pautan khas yang dikongsi oleh Admin).
+          </p>
+        </div>
+        <div class="w-10 h-10 rounded-2xl bg-rose-light text-burgundy-800 flex items-center justify-center shrink-0">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+        </div>
+      </div>
+
+      <form onsubmit="handleCustomerLookup(event)" class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+        <div class="sm:col-span-5">
+          <label for="lookup-ref" class="block text-[11px] font-bold uppercase text-charcoal-800 mb-1">Kod Rujukan</label>
+          <input type="text" id="lookup-ref" required placeholder="Cth: IZT-1001" class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 text-sm font-mono uppercase outline-none focus:border-burgundy-800" />
+        </div>
+        <div class="sm:col-span-4">
+          <label for="lookup-last4" class="block text-[11px] font-bold uppercase text-charcoal-800 mb-1">4 Digit Akhir No. Telefon</label>
+          <input type="text" id="lookup-last4" required maxlength="4" pattern="\d{4}" placeholder="Cth: 7890" class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 text-sm font-mono outline-none focus:border-burgundy-800" />
+        </div>
+        <div class="sm:col-span-3 flex items-end">
+          <button type="submit" class="w-full py-3 px-4 rounded-xl burgundy-gradient text-white font-bold text-sm hover:opacity-95 transition">
+            Semak
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Hasil Carian Peribadi Pelanggan Sahaja -->
+    <div id="customer-lookup-result" class="space-y-5"></div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 4. VIEW C: BAHAGIAN ADMIN IZUANATAILOR                   -->
+  <!-- ========================================================= -->
+  <section id="view-admin" class="hidden flex-1 max-w-5xl w-full mx-auto px-4 py-6 space-y-6">
+
+    <!-- Borang Log Masuk Admin (Jika Belum Log Masuk) -->
+    <div id="admin-login-box" class="max-w-md mx-auto my-6 bg-white rounded-3xl border border-cream-200 shadow-lg p-6 sm:p-8 space-y-5 text-center">
+      <div class="w-14 h-14 rounded-2xl burgundy-gradient text-white flex items-center justify-center mx-auto shadow">
+        <i data-lucide="lock" class="w-7 h-7"></i>
+      </div>
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-burgundy-800">Kawasan Terhad Pemilik</span>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal-900 mt-1">Log Masuk Admin Izuanatailor</h2>
+        <p class="text-xs text-charcoal-700 mt-1.5">Masukkan password Admin untuk mengurus tempahan, invois pelanggan, harga servis, dan menukar password sendiri.</p>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-3.5 text-left">
+        <div>
+          <label for="admin-login-password" class="block text-xs font-bold uppercase text-charcoal-900 mb-1">Password Admin</label>
+          <input
+            type="password"
+            id="admin-login-password"
+            required
+            placeholder="Masukkan password Admin (lalai: 1234)"
+            class="w-full px-4 py-3 rounded-xl border border-cream-200 bg-cream-50/60 focus:bg-white focus:border-burgundy-800 outline-none text-sm font-mono"
+          />
+        </div>
+        <button type="submit" class="w-full py-3.5 px-5 rounded-xl burgundy-gradient text-white font-bold text-sm shadow hover:opacity-95 transition">
+          Buka Panel Admin
+        </button>
+      </form>
+
+      <div class="pt-3 border-t border-cream-200 flex items-center justify-between text-[11px] text-charcoal-700">
+        <span>Password lalai: <strong>1234</strong></span>
+        <button type="button" onclick="resetAdminPasswordToDefault()" class="text-burgundy-800 font-bold hover:underline">
+          Reset Password ke 1234
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard Penuh Admin (Selepas Log Masuk Berjaya) -->
+    <div id="admin-dashboard-box" class="hidden space-y-6">
+
+      <!-- Kad Header Admin & Salin Pautan Katalog -->
+      <div class="no-print burgundy-gradient text-white rounded-3xl p-6 shadow-lg space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/15 pb-4">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-rose-light">Ruang Kerja Admin</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold">Pengurusan Izuanatailor</h2>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" onclick="navigateTo('tempahan')" class="px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-xs font-bold transition flex items-center gap-1.5">
+              <i data-lucide="eye" class="w-3.5 h-3.5"></i> Paparan Pelanggan
+            </button>
+            <button type="button" onclick="handleAdminLogout()" class="px-3.5 py-2 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-rose-light text-xs font-bold transition flex items-center gap-1.5">
+              <i data-lucide="log-out" class="w-3.5 h-3.5"></i> Log Keluar Admin
+            </button>
+          </div>
+        </div>
+
+        <!-- Pautan Katalog Untuk Dikongsi di WhatsApp -->
+        <div class="bg-charcoal-900/55 rounded-2xl p-4 border border-white/15 space-y-2.5">
+          <p class="text-xs font-bold text-rose-light uppercase tracking-wider">Pautan Sistem Tempahan Izuanatailor (Untuk WhatsApp / Katalog)</p>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input type="text" id="admin-shop-url-input" readonly class="flex-1 px-3.5 py-2.5 rounded-xl bg-white/10 border border-white/20 text-xs font-mono text-white outline-none" />
+            <button type="button" onclick="copyShopLinkOnly()" class="px-4 py-2.5 rounded-xl bg-rose-dusty hover:bg-rose-dark text-charcoal-900 hover:text-white font-extrabold text-xs transition shrink-0">
+              Salin Link Sahaja
+            </button>
+            <button type="button" onclick="copyShopPromoWithLink()" class="px-4 py-2.5 rounded-xl bg-white hover:bg-cream-100 text-charcoal-900 font-extrabold text-xs transition shrink-0">
+              Salin Teks + Link WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-Tab Dalam Panel Admin -->
+      <div class="no-print bg-white p-1.5 rounded-2xl border border-cream-200 flex flex-wrap gap-1.5 shadow-2xs">
+        <button type="button" id="subtab-orders" onclick="switchAdminSubTab('orders')" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-burgundy-800 text-white transition flex items-center gap-1.5">
+          <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+          <span>Tempahan & Invois Pelanggan</span>
+        </button>
+        <button type="button" id="subtab-services" onclick="switchAdminSubTab('services')" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-cream-100 hover:bg-cream-200 text-charcoal-900 transition flex items-center gap-1.5">
+          <i data-lucide="tag" class="w-4 h-4 text-burgundy-800"></i>
+          <span>Edit Servis & Harga</span>
+        </button>
+        <button type="button" id="subtab-security" onclick="switchAdminSubTab('security')" class="px-4 py-2.5 rounded-xl text-xs font-bold bg-cream-100 hover:bg-cream-200 text-charcoal-900 transition flex items-center gap-1.5">
+          <i data-lucide="key-round" class="w-4 h-4 text-burgundy-800"></i>
+          <span>Tukar Password & Tetapan</span>
+        </button>
+      </div>
+
+      <!-- SUB-PANEL 1: SENARAI TEMPAHAN & PENGURUSAN INVOIS -->
+      <div id="admin-subpanel-orders" class="space-y-4">
+        <div class="no-print flex flex-wrap gap-2">
+          <button type="button" onclick="setOrderFilter('ALL')" data-filter="ALL" class="order-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-charcoal-900 text-white">
+            Semua (<span id="stat-all">0</span>)
+          </button>
+          <button type="button" onclick="setOrderFilter('PENDING')" data-filter="PENDING" class="order-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-cream-200 text-charcoal-800">
+            Menunggu (<span id="stat-pending">0</span>)
+          </button>
+          <button type="button" onclick="setOrderFilter('APPROVED')" data-filter="APPROVED" class="order-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-cream-200 text-charcoal-800">
+            Diluluskan / Dijahit (<span id="stat-approved">0</span>)
+          </button>
+          <button type="button" onclick="setOrderFilter('READY')" data-filter="READY" class="order-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-cream-200 text-charcoal-800">
+            Siap (<span id="stat-ready">0</span>)
+          </button>
+        </div>
+
+        <div id="admin-orders-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+
+      <!-- SUB-PANEL 2: EDIT SERVIS & HARGA -->
+      <div id="admin-subpanel-services" class="no-print hidden bg-white rounded-3xl border border-cream-200 p-6 shadow-sm space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-cream-200 pb-4">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-charcoal-900">Senarai Servis & Harga Jahitan</h3>
+            <p class="text-xs text-charcoal-700">Anda boleh menambah, mengubah harga, atau memadam servis pada bila-bila masa.</p>
+          </div>
+          <button type="button" onclick="openServiceModal()" class="px-4 py-2.5 rounded-xl burgundy-gradient text-white font-bold text-xs shadow flex items-center gap-1.5 self-start">
+            <i data-lucide="plus" class="w-4 h-4"></i> Tambah Servis
+          </button>
+        </div>
+        <div id="admin-services-list" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+      </div>
+
+      <!-- SUB-PANEL 3: TUKAR PASSWORD ADMIN SENDIRI, TULISAN & POSTER -->
+      <div id="admin-subpanel-security" class="no-print hidden grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+        <!-- Tukar Password Admin Sendiri -->
+        <form onsubmit="handleChangePassword(event)" class="lg:col-span-5 bg-white rounded-3xl border border-cream-200 p-6 shadow-sm space-y-4 self-start">
+          <div class="flex items-center gap-2.5 border-b border-cream-200 pb-3">
+            <div class="w-10 h-10 rounded-xl bg-rose-light text-burgundy-800 flex items-center justify-center shrink-0">
+              <i data-lucide="key-round" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl font-bold text-charcoal-900">Tukar Password Admin</h3>
+              <p class="text-[11px] text-charcoal-700">Tetapkan password baharu pilihan anda sendiri.</p>
+            </div>
+          </div>
+
+          <div>
+            <label for="pwd-old" class="block text-xs font-bold text-charcoal-900 mb-1">Password Semasa</label>
+            <input type="password" id="pwd-old" required placeholder="Masukkan password semasa" class="w-full px-3.5 py-2.5 rounded-xl border border-cream-200 text-sm font-mono" />
+          </div>
+
+          <div>
+            <label for="pwd-new-1" class="block text-xs font-bold text-charcoal-900 mb-1">Password Baharu Pilihan Anda</label>
+            <input type="password" id="pwd-new-1" required minlength="4" placeholder="Minimum 4 aksara" class="w-full px-3.5 py-2.5 rounded-xl border border-cream-200 text-sm font-mono" />
+          </div>
+
+          <div>
+            <label for="pwd-new-2" class="block text-xs font-bold text-charcoal-900 mb-1">Sahkan Password Baharu</label>
+            <input type="password" id="pwd-new-2" required minlength="4" placeholder="Taip semula password baharu" class="w-full px-3.5 py-2.5 rounded-xl border border-cream-200 text-sm font-mono" />
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl burgundy-gradient text-white font-bold text-xs shadow hover:opacity-95 transition">
+            Simpan Password Baharu
+          </button>
+
+          <div class="pt-2 border-t border-cream-200 flex items-center justify-between text-[11px] text-charcoal-700">
+            <span>Terlupa password?</span>
+            <button type="button" onclick="resetAdminPasswordToDefault()" class="text-burgundy-800 font-bold hover:underline">
+              Tetapkan Semula ke 1234
+            </button>
+          </div>
+        </form>
+
+        <!-- Edit Poster, Tajuk, Gaya Tulisan & Info Butik -->
+        <form onsubmit="handleSaveSettings(event)" class="lg:col-span-7 bg-white rounded-3xl border border-cream-200 p-6 shadow-sm space-y-4">
+          <div class="border-b border-cream-200 pb-3">
+            <h3 class="font-serif text-xl font-bold text-charcoal-900">Poster Utama, Gaya Tulisan & Info Butik</h3>
+            <p class="text-[11px] text-charcoal-700">Ubah suai poster hadapan, saiz & jenis tulisan, serta maklumat Izuanatailor.</p>
+          </div>
+
+          <div class="bg-rose-light/40 p-3.5 rounded-2xl border border-rose-dusty/40 flex flex-col sm:flex-row items-center gap-4">
+            <img id="admin-poster-preview" src="1001079099.jpg" onerror="this.onerror=null; this.src='https://placehold.co/240x300/F6E5E8/7A2E3D?text=Poster';" alt="Pratonton Poster" class="w-20 h-28 object-cover object-top rounded-xl border border-white shadow bg-white shrink-0" />
+            <div class="space-y-2 flex-1 w-full text-xs">
+              <label for="set-poster-file" class="block font-bold text-burgundy-900">Tukar Imej Poster Utama:</label>
+              <input type="file" id="set-poster-file" accept="image/*" onchange="handlePosterFileUpload(event)" class="w-full text-[11px] text-charcoal-700 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[11px] file:font-bold file:bg-burgundy-800 file:text-white cursor-pointer" />
+              <button type="button" onclick="resetPosterToDefault()" class="px-3 py-1 rounded-lg bg-white text-charcoal-800 font-bold text-[11px] border border-cream-200">
+                Guna Poster Lalai
+              </button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="set-headline" class="block text-xs font-bold text-charcoal-900 mb-1">Tajuk Utama</label>
+              <input type="text" id="set-headline" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-sm" />
+            </div>
+            <div>
+              <label for="set-subheadline" class="block text-xs font-bold text-charcoal-900 mb-1">Sari Kata</label>
+              <input type="text" id="set-subheadline" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-sm" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div>
+              <label for="set-font-preset" class="block text-xs font-bold text-charcoal-900 mb-1">Jenis Tulisan</label>
+              <select id="set-font-preset" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white text-xs font-semibold">
+                <option value="playfair">Playfair & Jakarta Sans</option>
+                <option value="cormorant">Cormorant & Montserrat</option>
+                <option value="poppins">Poppins</option>
+                <option value="dancing">Dancing Script & Quicksand</option>
+                <option value="lora">Lora & Nunito</option>
+              </select>
+            </div>
+            <div>
+              <label for="set-title-size" class="block text-xs font-bold text-charcoal-900 mb-1">Saiz Tajuk (px)</label>
+              <input type="number" id="set-title-size" min="18" max="36" value="23" class="w-full px-3 py-2 rounded-xl border border-cream-200 text-sm" />
+            </div>
+            <div>
+              <label for="set-whatsapp" class="block text-xs font-bold text-charcoal-900 mb-1">No. WhatsApp (601...)</label>
+              <input type="tel" id="set-whatsapp" required class="w-full px-3 py-2 rounded-xl border border-cream-200 text-sm" />
+            </div>
+          </div>
+
+          <div>
+            <label for="set-hook" class="block text-xs font-bold text-charcoal-900 mb-1">Hook Jahitan</label>
+            <textarea id="set-hook" rows="2" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs"></textarea>
+          </div>
+
+          <div>
+            <label for="set-welcome" class="block text-xs font-bold text-charcoal-900 mb-1">Kata Aluan Ringkas</label>
+            <textarea id="set-welcome" rows="2" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="set-address" class="block text-xs font-bold text-charcoal-900 mb-1">Lokasi / Info Penghantaran</label>
+              <input type="text" id="set-address" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs" />
+            </div>
+            <div>
+              <label for="set-hours" class="block text-xs font-bold text-charcoal-900 mb-1">Waktu Operasi & Tempoh Siap</label>
+              <input type="text" id="set-hours" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs" />
+            </div>
+          </div>
+
+          <div>
+            <label for="set-payment" class="block text-xs font-bold text-charcoal-900 mb-1">Info Akaun Bank / Pembayaran (Pada Invois)</label>
+            <input type="text" id="set-payment" class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs" />
+          </div>
+
+          <button type="submit" class="px-6 py-3 rounded-xl burgundy-gradient text-white font-bold text-xs shadow hover:opacity-95 transition">
+            Simpan Tetapan Butik
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 5. MODAL ADMIN: EDIT TEMPAHAN & STATUS                    -->
+  <!-- ========================================================= -->
+  <div id="modal-edit-order" class="no-print hidden fixed inset-0 z-50 bg-charcoal-900/75 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-cream-200 space-y-4 my-8">
+      <div class="flex items-center justify-between border-b border-cream-200 pb-3">
+        <div>
+          <span class="text-xs font-bold uppercase text-burgundy-800">Kemaskini Tempahan</span>
+          <h3 class="font-serif text-2xl font-bold text-charcoal-900">Kod <span id="eo-ref" class="text-burgundy-800"></span></h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-edit-order')" class="p-2 rounded-full bg-cream-100 text-charcoal-700 hover:bg-cream-200">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveEditedOrder(event)" class="space-y-3 text-sm">
+        <input type="hidden" id="eo-id" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="eo-name" class="block text-xs font-bold text-charcoal-900 mb-1">Nama Pelanggan</label>
+            <input type="text" id="eo-name" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-sm" />
+          </div>
+          <div>
+            <label for="eo-phone" class="block text-xs font-bold text-charcoal-900 mb-1">No. Telefon</label>
+            <input type="tel" id="eo-phone" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-sm" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="eo-service" class="block text-xs font-bold text-charcoal-900 mb-1">Servis / Pakaian</label>
+            <input type="text" id="eo-service" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-sm" />
+          </div>
+          <div>
+            <label for="eo-status" class="block text-xs font-bold text-charcoal-900 mb-1">Status Tempahan</label>
+            <select id="eo-status" class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-sm font-semibold">
+              <option value="PENDING">Menunggu</option>
+              <option value="APPROVED">Diluluskan / Sedang Dijahit</option>
+              <option value="READY">Siap</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-rose-light/40 p-3.5 rounded-2xl border border-rose-dusty/40">
+          <div>
+            <label for="eo-final-price" class="block text-xs font-bold text-burgundy-900 mb-1">Harga Muktamad (RM)</label>
+            <input type="number" step="0.5" id="eo-final-price" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 bg-white font-bold text-burgundy-900" />
+          </div>
+          <div>
+            <label for="eo-ready-date" class="block text-xs font-bold text-burgundy-900 mb-1">Tarikh Jangka Siap</label>
+            <input type="date" id="eo-ready-date" required class="w-full px-3.5 py-2 rounded-xl border border-cream-200 bg-white text-sm" />
+          </div>
+        </div>
+
+        <div>
+          <label for="eo-notes" class="block text-xs font-bold text-charcoal-900 mb-1">Butiran / Ukuran / Catatan</label>
+          <textarea id="eo-notes" rows="2" class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs"></textarea>
+        </div>
+
+        <div>
+          <label for="eo-tailor-note" class="block text-xs font-bold text-charcoal-900 mb-1">Nota Admin Untuk Pelanggan</label>
+          <input type="text" id="eo-tailor-note" placeholder="Cth: Baju siap digosok, boleh ambil di kedai." class="w-full px-3.5 py-2 rounded-xl border border-cream-200 text-xs" />
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button type="button" onclick="closeModal('modal-edit-order')" class="flex-1 py-2.5 rounded-xl bg-cream-100 text-charcoal-800 font-semibold text-xs">Batal</button>
+          <button type="submit" class="flex-1 py-2.5 rounded-xl burgundy-gradient text-white font-bold text-xs shadow">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- 6. MODAL ADMIN: INVOIS PELANGGAN & KONGSI MUDAH           -->
+  <!-- ========================================================= -->
+  <div id="modal-invoice-admin" class="hidden fixed inset-0 z-50 bg-charcoal-900/80 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-5 sm:p-7 shadow-2xl border border-cream-200 space-y-5 my-8">
+      <div class="no-print flex items-center justify-between border-b border-cream-200 pb-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-burgundy-800">Invois Pelanggan</span>
+          <h3 class="font-serif text-2xl font-bold text-charcoal-900">Invois <span id="inv-modal-no" class="text-burgundy-800"></span></h3>
+        </div>
+        <button type="button" onclick="closeModal('modal-invoice-admin')" class="p-2 rounded-full bg-cream-100 text-charcoal-700 hover:bg-cream-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Borang Edit Butiran Invois -->
+      <div class="no-print bg-cream-50 p-4 rounded-2xl border border-cream-200 space-y-3 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label for="inv-base" class="block font-bold text-charcoal-900 mb-1">Harga Upah (RM)</label>
+            <input type="number" step="0.5" id="inv-base" oninput="refreshInvoiceModalPreview()" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white font-bold" />
+          </div>
+          <div>
+            <label for="inv-extra" class="block font-bold text-charcoal-900 mb-1">Caj Tambahan (RM)</label>
+            <input type="number" step="0.5" id="inv-extra" oninput="refreshInvoiceModalPreview()" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white font-bold" />
+          </div>
+          <div>
+            <label for="inv-deposit" class="block font-bold text-charcoal-900 mb-1">Deposit Dibayar (RM)</label>
+            <input type="number" step="0.5" id="inv-deposit" oninput="refreshInvoiceModalPreview()" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white font-bold text-emerald-800" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="inv-extra-note" class="block font-bold text-charcoal-900 mb-1">Keterangan Caj Tambahan</label>
+            <input type="text" id="inv-extra-note" oninput="refreshInvoiceModalPreview()" placeholder="Cth: Lining penuh / Manik / Alter tambahan" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white" />
+          </div>
+          <div>
+            <label for="inv-pay-status" class="block font-bold text-charcoal-900 mb-1">Status Bayaran</label>
+            <select id="inv-pay-status" onchange="refreshInvoiceModalPreview()" class="w-full px-3 py-2 rounded-xl border border-cream-200 bg-white font-bold">
+              <option value="UNPAID">BELUM LUNAS</option>
+              <option value="DEPOSIT">DEPOSIT DITERIMA</option>
+              <option value="PAID">LUNAS / DIBAYAR PENUH</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <button type="button" onclick="saveInvoiceForOrder()" class="px-4 py-2 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-xs transition">
+            Simpan Invois
+          </button>
+        </div>
+      </div>
+
+      <!-- Dokumen Invois -->
+      <div id="inv-modal-document" class="print-only-card bg-white rounded-2xl border border-cream-200 p-5 sm:p-6 space-y-4"></div>
+
+      <!-- Butang Kongsi Mudah Kepada Pelanggan -->
+      <div class="no-print grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+        <button type="button" onclick="copyShareableInvoiceLink()" class="py-3 px-3 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-xs transition flex items-center justify-center gap-1.5">
+          <i data-lucide="link" class="w-4 h-4 text-rose-dusty"></i>
+          <span>Salin Link Invois Pelanggan</span>
+        </button>
+        <button type="button" onclick="copyShareableInvoiceText()" class="py-3 px-3 rounded-xl bg-cream-100 hover:bg-cream-200 text-charcoal-900 font-bold text-xs border border-cream-200 transition flex items-center justify-center gap-1.5">
+          <i data-lucide="copy" class="w-4 h-4 text-burgundy-800"></i>
+          <span>Salin Teks Invois</span>
+        </button>
+        <a id="btn-share-invoice-wa" href="#" target="_blank" rel="noopener noreferrer" class="py-3 px-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-extrabold text-xs shadow transition flex items-center justify-center gap-1.5">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Kongsi Invois ke WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- 7. MODAL ADMIN: TAMBAH / EDIT SERVIS & HARGA              -->
+  <!-- ========================================================= -->
+  <div id="modal-service-edit" class="no-print hidden fixed inset-0 z-50 bg-charcoal-900/75 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-cream-200 space-y-4">
+      <div class="flex items-center justify-between border-b border-cream-200 pb-3">
+        <h3 id="srv-modal-heading" class="font-serif text-2xl font-bold text-charcoal-900">Edit Servis & Harga</h3>
+        <button type="button" onclick="closeModal('modal-service-edit')" class="p-2 rounded-full bg-cream-100 text-charcoal-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <form onsubmit="saveServiceForm(event)" class="space-y-3">
+        <input type="hidden" id="srv-id-input" />
+        <div>
+          <label for="srv-name-input" class="block text-xs font-bold text-charcoal-900 mb-1">Nama Servis</label>
+          <input type="text" id="srv-name-input" required placeholder="Cth: Baju Kurung Moden" class="w-full px-3.5 py-2.5 rounded-xl border border-cream-200 text-sm" />
+        </div>
+        <div>
+          <label for="srv-price-input" class="block text-xs font-bold text-charcoal-900 mb-1">Harga Bermula (RM)</label>
+          <input type="number" step="0.5" id="srv-price-input" required placeholder="85" class="w-full px-3.5 py-2.5 rounded-xl border border-cream-200 text-sm font-bold" />
+        </div>
+        <div>
+          <label for="srv-desc-input" class="block text-xs font-bold text-charcoal-900 mb-1">Keterangan Ringkas</label>
+          <input type="text" id="srv-desc-input" required placeholder="Cth: Potongan kemas mengikut ukuran badan" class="w-full px-3.5 py-2.5 rounded-xl border border-cream-200 text-sm" />
+        </div>
+        <div class="flex gap-2 pt-2">
+          <button type="button" onclick="closeModal('modal-service-edit')" class="flex-1 py-2.5 rounded-xl bg-cream-100 text-charcoal-800 font-semibold text-xs">Batal</button>
+          <button type="submit" class="flex-1 py-2.5 rounded-xl burgundy-gradient text-white font-bold text-xs">Simpan Servis</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- 8. FOOTER RINGKAS                                         -->
+  <!-- ========================================================= -->
+  <footer class="no-print bg-charcoal-900 text-cream-200 py-6 mt-10 border-t border-charcoal-800">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+      <div>
+        <span class="font-serif text-base font-bold text-white">Izuanatailor</span>
+        <span class="text-rose-dusty mx-1.5">•</span>
+        <span>Jahitan Dengan Hati</span>
+      </div>
+      <div class="text-cream-200/80 text-center sm:text-right">
+        Privasi pelanggan terjaga — setiap pelanggan hanya melihat tempahan & invois milik sendiri.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================
+    // KUNCI STORAN & DATA LALAI
+    // =========================================================
+    const STORAGE_KEYS = {
+      SETTINGS: 'izuanatailor_v3_settings',
+      SERVICES: 'izuanatailor_v3_services',
+      ORDERS: 'izuanatailor_v3_orders',
+    };
+
+    const FONT_MAP = {
+      playfair: {
+        heading: "'Playfair Display', serif",
+        body: "'Plus Jakarta Sans', sans-serif",
+      },
+      cormorant: {
+        heading: "'Cormorant Garamond', serif",
+        body: "'Montserrat', sans-serif",
+      },
+      poppins: {
+        heading: "'Poppins', sans-serif",
+        body: "'Poppins', sans-serif",
+      },
+      dancing: {
+        heading: "'Dancing Script', cursive",
+        body: "'Quicksand', sans-serif",
+      },
+      lora: {
+        heading: "'Lora', serif",
+        body: "'Nunito', sans-serif",
+      },
+    };
+
+    const DEFAULT_SETTINGS = {
+      shopName: 'Izuanatailor',
+      tagline: 'Jahitan Dengan Hati',
+      mainHeadline: 'Selamat Datang ke Izuanatailor',
+      subHeadline: 'Jahitan Dengan Hati',
+      fontPreset: 'playfair',
+      titleSize: 23,
+      bodySize: 15,
+      whatsapp: '60123456789',
+      hookText: '“Jahitan adalah seni, setiap jahitan ada cerita. Di Izuanatailor, kami jahit, ubah, dan cantikkan pakaian anda dengan penuh teliti dan sepenuh hati.”',
+      welcomeText: 'Hai & selamat datang! Sila pilih jenis jahitan atau ubah suai yang anda perlukan di bawah, isi maklumat & ukuran anda, dan hantar tempahan. Izuanatailor akan menyemak, mengesahkan harga serta tarikh siap, dan berkongsi invois khas kepada anda.',
+      address: 'Butik Izuanatailor (Temujanji & Penghantaran Kain/Baju Contoh melalui WhatsApp)',
+      hours: 'Isnin – Sabtu (9:00 Pagi – 6:00 Petang) • Tempoh siap 7–14 hari',
+      paymentInfo: 'Maybank • 1520 1234 5678 (Izuanatailor) — Sila hantar resit bayaran ke WhatsApp.',
+      posterImage: '1001079099.jpg',
+      adminPassword: '1234',
+    };
+
+    const DEFAULT_SERVICES = [
+      { id: 'srv-1', name: 'Baju Kurung Moden / Tradisional', price: 85, desc: 'Potongan kemas mengikut ukuran badan + kain kipas/duyung/susun tepi.' },
+      { id: 'srv-2', name: 'Kebaya / Kebarung Moden', price: 115, desc: 'Potongan elegan, zip sorok kemas & kemasan leher yang teliti.' },
+      { id: 'srv-3', name: 'Jubah / Dress Labuh', price: 75, desc: 'Potongan selesa, kemas & mesra wuduk.' },
+      { id: 'srv-4', name: 'Baju Melayu Cekak Musang / Teluk Belanga', price: 110, desc: 'Sepasang baju & seluar berpoket dengan jahitan kolar rapi.' },
+      { id: 'srv-5', name: 'Ubah Suai / Alter Pakaian', price: 20, desc: 'Potong labuh, kecilkan pinggang/bahu, tukar zip atau ubah potongan.' },
+      { id: 'srv-6', name: 'Tambahan Kain Lining / Manik', price: 30, desc: 'Kemasan kain lining atau jahitan manik/lace tambahan.' },
+    ];
+
+    const DEFAULT_ORDERS = [
+      {
+        id: 'IZT-1001',
+        name: 'Nurul Izzah',
+        phone: '0134567890',
+        serviceName: 'Baju Kurung Moden / Tradisional',
+        estimatedPrice: 85,
+        finalPrice: 95,
+        measureMethod: 'Hantar Baju Contoh',
+        measurements: null,
+        neededDate: '2026-12-15',
+        readyDate: '2026-12-08',
+        notes: 'Kain cotton sulam, zip sorok belakang & lengan.',
+        tailorNote: 'Baju siap digosok dan boleh diambil.',
+        status: 'READY',
+        createdAt: '2026-11-20T10:00:00',
+        invoice: {
+          invNo: 'INV-IZT-1001',
+          token: 'TOK1001',
+          baseAmount: 85,
+          extraAmount: 10,
+          extraNote: 'Zip sorok lengan',
+          depositPaid: 40,
+          payStatus: 'DEPOSIT',
+          issuedDate: '2026-11-24',
+        },
+      },
+    ];
+
+    // Keadaan Aplikasi
+    let settingsData = { ...DEFAULT_SETTINGS };
+    let servicesData = [...DEFAULT_SERVICES];
+    let ordersData = [...DEFAULT_ORDERS];
+    let adminLoggedIn = false;
+    let activeOrderFilter = 'ALL';
+    let activeInvoiceId = null;
+
+    // =========================================================
+    // PENGENDALIAN STORAN SELAMAT (TRY / CATCH)
+    // =========================================================
+    function safeLoadStorage() {
+      try {
+        const rawSettings = localStorage.getItem(STORAGE_KEYS.SETTINGS);
+        const rawServices = localStorage.getItem(STORAGE_KEYS.SERVICES);
+        const rawOrders = localStorage.getItem(STORAGE_KEYS.ORDERS);
+
+        settingsData = rawSettings ? { ...DEFAULT_SETTINGS, ...JSON.parse(rawSettings) } : { ...DEFAULT_SETTINGS };
+        servicesData = rawServices ? JSON.parse(rawServices) : [...DEFAULT_SERVICES];
+        ordersData = rawOrders ? JSON.parse(rawOrders) : [...DEFAULT_ORDERS];
+
+        if (!Array.isArray(servicesData) || servicesData.length === 0) {
+          servicesData = [...DEFAULT_SERVICES];
+        }
+        if (!Array.isArray(ordersData)) {
+          ordersData = [...DEFAULT_ORDERS];
+        }
+      } catch (err) {
+        console.error('Ralat memuatkan data localStorage:', err);
+        settingsData = { ...DEFAULT_SETTINGS };
+        servicesData = [...DEFAULT_SERVICES];
+        ordersData = [...DEFAULT_ORDERS];
+      }
+    }
+
+    function safeSaveStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(settingsData));
+        localStorage.setItem(STORAGE_KEYS.SERVICES, JSON.stringify(servicesData));
+        localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(ordersData));
+      } catch (err) {
+        console.error('Ralat menyimpan data localStorage:', err);
+        showToast('Perhatian: Ruang simpanan pelayar penuh atau terhad.', 'warning');
+      }
+    }
+
+    // =========================================================
+    // INISIALISASI & NAVIGASI UTAMA (100% BEBAS RALAT)
+    // =========================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      safeLoadStorage();
+      applySettingsToPage();
+      renderServicesGrid();
+      populateServiceSelect();
+      setDefaultNeededDate();
+      updatePendingBadge();
+
+      // Semak jika dibuka melalui pautan invois khas (?inv=...&token=...) atau status (?ref=...)
+      const handledDeepLink = checkUrlDeepLink();
+      if (!handledDeepLink) {
+        navigateTo('tempahan');
+      }
+
+      refreshIcons();
+    });
+
+    function refreshIcons() {
+      try {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      } catch (err) {
+        // Abaikan ralat ikon jika skrip luaran lambat dimuatkan
+      }
+    }
+
+    /**
+     * Menukar paparan utama secara konsisten antara:
+     * - 'tempahan' (Paparan Utama Pelanggan)
+     * - 'semak'    (Semak Tempahan & Invois Milik Sendiri Sahaja)
+     * - 'admin'    (Ruang Admin Izuanatailor)
+     */
+    function navigateTo(viewName) {
+      const viewTempahan = document.getElementById('view-tempahan');
+      const viewSemak = document.getElementById('view-semak');
+      const viewAdmin = document.getElementById('view-admin');
+
+      if (!viewTempahan || !viewSemak || !viewAdmin) return;
+
+      viewTempahan.classList.add('hidden');
+      viewSemak.classList.add('hidden');
+      viewAdmin.classList.add('hidden');
+
+      const tabTempahan = document.getElementById('nav-tab-tempahan');
+      const tabSemak = document.getElementById('nav-tab-semak');
+      const tabAdmin = document.getElementById('nav-tab-admin');
+
+      const inactiveTabClass = 'px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-cream-100 hover:bg-cream-200 text-charcoal-900 border border-cream-200';
+      const activeTabClass = 'px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-burgundy-800 text-white shadow-xs';
+
+      tabTempahan.className = inactiveTabClass;
+      tabSemak.className = inactiveTabClass;
+      tabAdmin.className = 'relative px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-charcoal-900 hover:bg-charcoal-800 text-cream-50';
+
+      if (viewName === 'tempahan') {
+        viewTempahan.classList.remove('hidden');
+        tabTempahan.className = activeTabClass;
+      } else if (viewName === 'semak') {
+        viewSemak.classList.remove('hidden');
+        tabSemak.className = activeTabClass;
+      } else if (viewName === 'admin') {
+        viewAdmin.classList.remove('hidden');
+        tabAdmin.className = 'relative px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-burgundy-800 text-white ring-2 ring-rose-dusty';
+        syncAdminViewState();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      refreshIcons();
+    }
+
+    function scrollToOrderForm() {
+      navigateTo('tempahan');
+      setTimeout(() => {
+        const box = document.getElementById('borang-tempahan-box');
+        if (box) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+
+    // =========================================================
+    // PAUTAN KHAS (INVOIS DIKONGSI ADMIN / SEMAK STATUS)
+    // =========================================================
+    function checkUrlDeepLink() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const invParam = params.get('inv');
+        const tokenParam = params.get('token');
+        const refParam = params.get('ref');
+
+        if (invParam) {
+          navigateTo('semak');
+          const order = ordersData.find(
+            (o) => o.invoice && o.invoice.invNo.toUpperCase() === invParam.trim().toUpperCase()
+          );
+          const resultBox = document.getElementById('customer-lookup-result');
+
+          if (order && order.invoice && tokenParam && order.invoice.token === tokenParam.trim()) {
+            resultBox.innerHTML = renderSharedInvoiceCard(order, order.invoice);
+          } else {
+            resultBox.innerHTML = `
+              <div class="bg-white rounded-3xl border border-burgundy-700/30 p-7 text-center space-y-2 shadow">
+                <i data-lucide="lock" class="w-8 h-8 text-burgundy-800 mx-auto"></i>
+                <h3 class="font-serif text-xl font-bold text-charcoal-900">Pautan Invois Tidak Sah atau Telah Dikunci</h3>
+                <p class="text-xs text-charcoal-700 max-w-md mx-auto">Invois ini hanya boleh dibuka melalui pautan rasmi yang dikongsi oleh Admin Izuanatailor kepada pelanggan berkenaan.</p>
+              </div>
+            `;
+          }
+          refreshIcons();
+          return true;
+        }
+
+        if (refParam) {
+          navigateTo('semak');
+          const refInput = document.getElementById('lookup-ref');
+          if (refInput) refInput.value = refParam.trim().toUpperCase();
+          const order = ordersData.find((o) => o.id.toUpperCase() === refParam.trim().toUpperCase());
+          if (order) {
+            document.getElementById('customer-lookup-result').innerHTML = renderCustomerOwnOrderCard(order);
+            refreshIcons();
+          }
+          return true;
+        }
+      } catch (err) {
+        console.error('Ralat semakan pautan URL:', err);
+      }
+      return false;
+    }
+
+    // =========================================================
+    // PAPARAN TETAPAN, SERVIS & BORANG PELANGGAN
+    // =========================================================
+    function applySettingsToPage() {
+      const preset = FONT_MAP[settingsData.fontPreset] || FONT_MAP.playfair;
+      const titlePx = Number(settingsData.titleSize) || 23;
+      const subPx = Math.max(11, Math.round(titlePx * 0.52));
+      const bodyPx = Number(settingsData.bodySize) || 15;
+
+      document.documentElement.style.setProperty('--font-heading', preset.heading);
+      document.documentElement.style.setProperty('--font-body', preset.body);
+      document.documentElement.style.setProperty('--body-size', `${bodyPx}px`);
+
+      document.getElementById('nav-shop-name').textContent = settingsData.shopName;
+      document.getElementById('nav-shop-tagline').textContent = settingsData.tagline;
+
+      const h1 = document.getElementById('display-main-headline');
+      const sub = document.getElementById('display-sub-headline');
+      h1.textContent = settingsData.mainHeadline;
+      h1.style.fontFamily = preset.heading;
+      h1.style.fontSize = `${titlePx}px`;
+
+      sub.textContent = settingsData.subHeadline;
+      sub.style.fontFamily = preset.body;
+      sub.style.fontSize = `${subPx}px`;
+
+      document.getElementById('display-hook-text').textContent = settingsData.hookText;
+      document.getElementById('display-welcome-text').textContent = settingsData.welcomeText;
+      document.getElementById('display-shop-address').textContent = settingsData.address;
+      document.getElementById('display-shop-hours').textContent = settingsData.hours;
+      document.getElementById('hero-poster-img').src = settingsData.posterImage || '1001079099.jpg';
+    }
+
+    function renderServicesGrid() {
+      const grid = document.getElementById('public-services-grid');
+      grid.innerHTML = servicesData
+        .map(
+          (srv) => `
+          <div class="bg-white rounded-2xl border border-cream-200 p-5 shadow-xs hover:border-rose-dusty transition flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-bold text-sm sm:text-base text-charcoal-900">${escapeHtml(srv.name)}</h3>
+                <span class="shrink-0 px-2.5 py-1 rounded-xl bg-rose-light text-burgundy-900 font-extrabold text-xs">
+                  RM ${Number(srv.price).toFixed(0)}
+                </span>
+              </div>
+              <p class="text-xs text-charcoal-700 mt-1.5 leading-relaxed">${escapeHtml(srv.desc)}</p>
+            </div>
+            <button
+              type="button"
+              onclick="pickServiceForOrder('${srv.id}')"
+              class="w-full py-2 px-3 rounded-xl bg-cream-50 hover:bg-rose-light/60 text-burgundy-800 font-bold text-xs border border-cream-200 transition flex items-center justify-center gap-1"
+            >
+              <span>Pilih & Isi Borang</span>
+              <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        `
+        )
+        .join('');
+      refreshIcons();
+    }
+
+    function populateServiceSelect() {
+      const select = document.getElementById('ord-service');
+      select.innerHTML = servicesData
+        .map(
+          (srv) =>
+            `<option value="${srv.id}">${escapeHtml(srv.name)} — Bermula RM ${Number(srv.price).toFixed(2)}</option>`
+        )
+        .join('');
+      updateOrderEstimate();
+    }
+
+    function pickServiceForOrder(serviceId) {
+      navigateTo('tempahan');
+      const select = document.getElementById('ord-service');
+      if (select) {
+        select.value = serviceId;
+        updateOrderEstimate();
+      }
+      setTimeout(() => {
+        document.getElementById('borang-tempahan-box').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+    }
+
+    function updateOrderEstimate() {
+      const srvId = document.getElementById('ord-service').value;
+      const srv = servicesData.find((s) => s.id === srvId);
+      const price = srv ? Number(srv.price) : 0;
+      document.getElementById('ord-estimate-display').textContent = `RM ${price.toFixed(2)}`;
+    }
+
+    function setDefaultNeededDate() {
+      const dateInput = document.getElementById('ord-needed-date');
+      if (!dateInput) return;
+      const d = new Date();
+      d.setDate(d.getDate() + 14);
+      dateInput.value = d.toISOString().split('T')[0];
+    }
+
+    function toggleCustomMeasureBox() {
+      const selected = document.querySelector('input[name="measure_method"]:checked');
+      const box = document.getElementById('custom-measure-box');
+      if (!selected || !box) return;
+      box.classList.toggle('hidden', selected.value !== 'Ukuran Sendiri');
+    }
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('ord-name').value.trim();
+      const phone = document.getElementById('ord-phone').value.trim();
+      const srvId = document.getElementById('ord-service').value;
+      const srv = servicesData.find((s) => s.id === srvId) || servicesData[0];
+      const neededDate = document.getElementById('ord-needed-date').value;
+      const measureMethod = document.querySelector('input[name="measure_method"]:checked').value;
+      const notes = document.getElementById('ord-notes').value.trim() || 'Tiada catatan tambahan';
+
+      let measurements = null;
+      if (measureMethod === 'Ukuran Sendiri') {
+        measurements = {
+          bahu: document.getElementById('m-bahu').value.trim() || '-',
+          dada: document.getElementById('m-dada').value.trim() || '-',
+          pinggang: document.getElementById('m-pinggang').value.trim() || '-',
+          punggung: document.getElementById('m-punggung').value.trim() || '-',
+          labuh: document.getElementById('m-labuh').value.trim() || '-',
+        };
+      }
+
+      const codeNum = 1001 + ordersData.length;
+      const refCode = `IZT-${codeNum}`;
+
+      const newOrder = {
+        id: refCode,
+        name,
+        phone,
+        serviceName: srv ? srv.name : 'Tempahan Jahitan',
+        estimatedPrice: srv ? Number(srv.price) : 0,
+        finalPrice: null,
+        measureMethod,
+        measurements,
+        neededDate,
+        readyDate: null,
+        notes,
+        tailorNote: '',
+        status: 'PENDING',
+        createdAt: new Date().toISOString(),
+        invoice: null,
+      };
+
+      ordersData.unshift(newOrder);
+      safeSaveStorage();
+      updatePendingBadge();
+
+      e.target.reset();
+      toggleCustomMeasureBox();
+      setDefaultNeededDate();
+      updateOrderEstimate();
+
+      // Bawa pelanggan terus ke tab "Semak Tempahan Saya" untuk melihat resit miliknya sahaja
+      navigateTo('semak');
+      document.getElementById('lookup-ref').value = refCode;
+      document.getElementById('lookup-last4').value = phone.replace(/\D/g, '').slice(-4);
+      document.getElementById('customer-lookup-result').innerHTML = renderCustomerOwnOrderCard(newOrder);
+      refreshIcons();
+
+      showToast(`Tempahan ${refCode} berjaya dihantar!`, 'success');
+    }
+
+    // =========================================================
+    // PRIVASI KETAT: PELANGGAN HANYA MELIHAT MAKLUMAT SENDIRI
+    // =========================================================
+    function handleCustomerLookup(e) {
+      e.preventDefault();
+      const refInput = document.getElementById('lookup-ref').value.trim().toUpperCase();
+      const last4Input = document.getElementById('lookup-last4').value.trim();
+      const resultBox = document.getElementById('customer-lookup-result');
+
+      const found = ordersData.find((o) => o.id.toUpperCase() === refInput);
+      const cleanPhoneLast4 = found ? found.phone.replace(/\D/g, '').slice(-4) : '';
+
+      if (!found || cleanPhoneLast4 !== last4Input) {
+        resultBox.innerHTML = `
+          <div class="bg-white rounded-3xl border border-burgundy-700/30 p-6 text-center space-y-2 shadow-xs">
+            <i data-lucide="shield-alert" class="w-7 h-7 text-burgundy-800 mx-auto"></i>
+            <h3 class="font-bold text-sm text-charcoal-900">Kod Rujukan atau 4 Digit Telefon Tidak Sepadan</h3>
+            <p class="text-xs text-charcoal-700">Rekod tidak ditemui. Pelanggan tidak dibenarkan melihat senarai atau maklumat pelanggan lain.</p>
+          </div>
+        `;
+        refreshIcons();
+        return;
+      }
+
+      resultBox.innerHTML = renderCustomerOwnOrderCard(found);
+      refreshIcons();
+    }
+
+    function renderCustomerOwnOrderCard(order) {
+      const priceShown = order.finalPrice !== null ? Number(order.finalPrice) : Number(order.estimatedPrice);
+      const priceLabel = order.finalPrice !== null ? 'Harga Muktamad' : 'Anggaran Harga Awal';
+
+      let statusPill = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900">Menunggu</span>';
+      if (order.status === 'APPROVED') {
+        statusPill = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-light text-burgundy-900">Diluluskan / Sedang Dijahit</span>';
+      } else if (order.status === 'READY') {
+        statusPill = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900">Siap Diambil</span>';
+      }
+
+      let measureHtml = `<span class="font-semibold text-charcoal-900">${escapeHtml(order.measureMethod)}</span>`;
+      if (order.measureMethod === 'Ukuran Sendiri' && order.measurements) {
+        const m = order.measurements;
+        measureHtml += `
+          <div class="mt-2 grid grid-cols-5 gap-1.5 bg-cream-50 p-2.5 rounded-xl border border-cream-200 text-center text-xs">
+            <div><span class="block text-[10px] text-charcoal-700">Bahu</span><strong>${escapeHtml(m.bahu)}"</strong></div>
+            <div><span class="block text-[10px] text-charcoal-700">Dada</span><strong>${escapeHtml(m.dada)}"</strong></div>
+            <div><span class="block text-[10px] text-charcoal-700">Pinggang</span><strong>${escapeHtml(m.pinggang)}"</strong></div>
+            <div><span class="block text-[10px] text-charcoal-700">Punggung</span><strong>${escapeHtml(m.punggung)}"</strong></div>
+            <div><span class="block text-[10px] text-charcoal-700">Labuh</span><strong>${escapeHtml(m.labuh)}"</strong></div>
+          </div>
+        `;
+      }
+
+      // Invois hanya dipaparkan jika Admin telah menjana/mengaktifkan invois untuk tempahan ini
+      const invoiceSectionHtml = order.invoice
+        ? `<div class="mt-4">${renderSharedInvoiceCard(order, order.invoice)}</div>`
+        : `<div class="p-3.5 rounded-2xl bg-cream-50 border border-cream-200 text-xs text-charcoal-700">
+             Invois rasmi belum dijana oleh Admin. Setelah disahkan oleh Admin, invois akan dipaparkan di sini atau melalui pautan invois yang dikongsi.
+           </div>`;
+
+      return `
+        <div class="bg-white rounded-3xl border border-cream-200 shadow-lg overflow-hidden">
+          <div class="burgundy-gradient text-white p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-rose-light">${escapeHtml(settingsData.shopName)} • Tempahan Anda</span>
+              <h3 class="font-serif text-2xl font-bold mt-0.5">Kod: ${escapeHtml(order.id)}</h3>
+              <p class="text-xs text-rose-light mt-0.5">Pelanggan: <strong>${escapeHtml(order.name)}</strong> (${escapeHtml(order.phone)})</p>
+            </div>
+            <div>${statusPill}</div>
+          </div>
+
+          <div class="p-5 sm:p-6 space-y-4 text-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="p-3.5 rounded-2xl bg-cream-50 border border-cream-200">
+                <span class="text-xs text-charcoal-700 block">Jenis Servis / Pakaian</span>
+                <span class="font-bold text-charcoal-900">${escapeHtml(order.serviceName)}</span>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-cream-50 border border-cream-200">
+                <span class="text-xs text-charcoal-700 block">Tarikh Jangka Siap</span>
+                <span class="font-bold text-charcoal-900">${order.readyDate ? formatDateMs(order.readyDate) : 'Menunggu kemaskini Admin'}</span>
+                <span class="text-[11px] text-charcoal-700 block mt-0.5">Tarikh diperlukan: ${formatDateMs(order.neededDate)}</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="text-xs text-charcoal-700 block mb-1">Cara Ukuran:</span>
+              ${measureHtml}
+            </div>
+
+            <div class="border-t border-cream-200 pt-3 text-xs space-y-2">
+              <p><strong class="text-charcoal-900">Catatan Anda:</strong> ${escapeHtml(order.notes)}</p>
+              ${
+                order.tailorNote
+                  ? `<div class="p-3 rounded-xl bg-rose-light/50 border border-rose-dusty/40 text-charcoal-900">
+                       <strong class="text-burgundy-900 block">Nota Dari Izuanatailor:</strong>
+                       <p class="mt-0.5">${escapeHtml(order.tailorNote)}</p>
+                     </div>`
+                  : ''
+              }
+            </div>
+
+            <div class="bg-cream-100 rounded-2xl p-4 flex items-center justify-between border border-cream-200">
+              <div>
+                <span class="text-xs font-bold uppercase text-burgundy-900">${priceLabel}</span>
+                <p class="text-[11px] text-charcoal-700">Simpan Kod Rujukan <strong>${escapeHtml(order.id)}</strong> untuk rujukan.</p>
+              </div>
+              <span class="font-serif text-2xl sm:text-3xl font-bold text-burgundy-900">RM ${priceShown.toFixed(2)}</span>
+            </div>
+
+            ${invoiceSectionHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    // =========================================================
+    // SISTEM ADMIN, TUKAR PASSWORD & INVOIS
+    // =========================================================
+    function syncAdminViewState() {
+      const loginBox = document.getElementById('admin-login-box');
+      const dashBox = document.getElementById('admin-dashboard-box');
+      const navIcon = document.getElementById('admin-nav-icon');
+      const navLabel = document.getElementById('admin-nav-label');
+
+      if (adminLoggedIn) {
+        loginBox.classList.add('hidden');
+        dashBox.classList.remove('hidden');
+        navIcon.setAttribute('data-lucide', 'unlock');
+        navLabel.textContent = 'Admin (Aktif)';
+
+        const baseUrl = getCleanBaseUrl();
+        document.getElementById('admin-shop-url-input').value = baseUrl;
+
+        renderAdminOrdersList();
+        renderAdminServicesList();
+        loadAdminSettingsForm();
+      } else {
+        loginBox.classList.remove('hidden');
+        dashBox.classList.add('hidden');
+        navIcon.setAttribute('data-lucide', 'lock');
+        navLabel.textContent = 'Admin';
+      }
+      refreshIcons();
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const inputPwd = document.getElementById('admin-login-password').value;
+      if (inputPwd === settingsData.adminPassword) {
+        adminLoggedIn = true;
+        document.getElementById('admin-login-password').value = '';
+        syncAdminViewState();
+        showToast('Berjaya masuk ke Panel Admin Izuanatailor!', 'success');
+      } else {
+        showToast('Password Admin salah. Sila cuba semula.', 'warning');
+      }
+    }
+
+    function handleAdminLogout() {
+      adminLoggedIn = false;
+      syncAdminViewState();
+      navigateTo('tempahan');
+      showToast('Anda telah log keluar daripada mod Admin.', 'info');
+    }
+
+    function handleChangePassword(e) {
+      e.preventDefault();
+      const oldPwd = document.getElementById('pwd-old').value;
+      const newPwd1 = document.getElementById('pwd-new-1').value;
+      const newPwd2 = document.getElementById('pwd-new-2').value;
+
+      if (oldPwd !== settingsData.adminPassword) {
+        showToast('Password semasa tidak tepat!', 'warning');
+        return;
+      }
+      if (newPwd1 !== newPwd2) {
+        showToast('Password baharu dan pengesahan password tidak sepadan!', 'warning');
+        return;
+      }
+
+      settingsData.adminPassword = newPwd1;
+      safeSaveStorage();
+      e.target.reset();
+      showToast('Password Admin baharu anda berjaya disimpan!', 'success');
+    }
+
+    function resetAdminPasswordToDefault() {
+      settingsData.adminPassword = '1234';
+      safeSaveStorage();
+      showToast('Password Admin telah ditetapkan semula ke 1234.', 'info');
+    }
+
+    function switchAdminSubTab(tabName) {
+      ['orders', 'services', 'security'].forEach((name) => {
+        const panel = document.getElementById(`admin-subpanel-${name}`);
+        const btn = document.getElementById(`subtab-${name}`);
+        if (panel) panel.classList.toggle('hidden', name !== tabName);
+        if (btn) {
+          btn.className =
+            name === tabName
+              ? 'px-4 py-2.5 rounded-xl text-xs font-bold bg-burgundy-800 text-white transition flex items-center gap-1.5'
+              : 'px-4 py-2.5 rounded-xl text-xs font-bold bg-cream-100 hover:bg-cream-200 text-charcoal-900 transition flex items-center gap-1.5';
+        }
+      });
+      refreshIcons();
+    }
+
+    function updatePendingBadge() {
+      const count = ordersData.filter((o) => o.status === 'PENDING').length;
+      const badge = document.getElementById('admin-pending-badge');
+      if (!badge) return;
+      badge.textContent = String(count);
+      badge.classList.toggle('hidden', count === 0);
+    }
+
+    // --- Pengurusan Tempahan Admin ---
+    function setOrderFilter(filterStatus) {
+      activeOrderFilter = filterStatus;
+      document.querySelectorAll('.order-filter-btn').forEach((btn) => {
+        const isCurrent = btn.dataset.filter === filterStatus;
+        btn.className = isCurrent
+          ? 'order-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-charcoal-900 text-white'
+          : 'order-filter-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-white border border-cream-200 text-charcoal-800';
+      });
+      renderAdminOrdersList();
+    }
+
+    function renderAdminOrdersList() {
+      document.getElementById('stat-all').textContent = String(ordersData.length);
+      document.getElementById('stat-pending').textContent = String(ordersData.filter((o) => o.status === 'PENDING').length);
+      document.getElementById('stat-approved').textContent = String(ordersData.filter((o) => o.status === 'APPROVED').length);
+      document.getElementById('stat-ready').textContent = String(ordersData.filter((o) => o.status === 'READY').length);
+
+      const list =
+        activeOrderFilter === 'ALL'
+          ? ordersData
+          : ordersData.filter((o) => o.status === activeOrderFilter);
+
+      const container = document.getElementById('admin-orders-list');
+      if (list.length === 0) {
+        container.innerHTML = `<div class="col-span-full bg-white rounded-3xl border border-cream-200 p-8 text-center text-xs text-charcoal-700">Tiada tempahan dalam status ini.</div>`;
+        return;
+      }
+
+      container.innerHTML = list
+        .map((order) => {
+          const amount = order.finalPrice !== null ? Number(order.finalPrice) : Number(order.estimatedPrice);
+          const amountLabel = order.finalPrice !== null ? 'Harga Muktamad' : 'Anggaran';
+
+          let badge = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900">Menunggu</span>';
+          if (order.status === 'APPROVED') {
+            badge = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-light text-burgundy-900">Diluluskan / Dijahit</span>';
+          } else if (order.status === 'READY') {
+            badge = '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-900">Siap</span>';
+          }
+
+          let measureSummary = order.measureMethod;
+          if (order.measureMethod === 'Ukuran Sendiri' && order.measurements) {
+            const m = order.measurements;
+            measureSummary += ` (B:${m.bahu}" D:${m.dada}" P:${m.pinggang}" Pg:${m.punggung}" L:${m.labuh}")`;
+          }
+
+          return `
+            <div class="bg-white rounded-3xl border border-cream-200 p-5 shadow-xs flex flex-col justify-between space-y-4">
+              <div class="space-y-2.5">
+                <div class="flex items-start justify-between gap-2 border-b border-cream-200 pb-3">
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span class="font-mono text-xs font-extrabold bg-cream-100 px-2.5 py-0.5 rounded-lg text-charcoal-900">${escapeHtml(order.id)}</span>
+                      ${badge}
+                    </div>
+                    <h4 class="font-bold text-base text-charcoal-900 mt-1.5">${escapeHtml(order.name)}</h4>
+                    <p class="text-xs text-charcoal-700">${escapeHtml(order.phone)}</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-base font-extrabold text-burgundy-900 block">RM ${amount.toFixed(2)}</span>
+                    <span class="text-[10px] text-charcoal-700">${amountLabel}</span>
+                    <p class="text-[11px] text-charcoal-700 mt-1">Perlu: <strong>${formatDateMs(order.neededDate)}</strong></p>
+                  </div>
+                </div>
+
+                <div class="text-xs text-charcoal-800 space-y-1">
+                  <p><strong>Servis:</strong> ${escapeHtml(order.serviceName)}</p>
+                  <p><strong>Ukuran:</strong> ${escapeHtml(measureSummary)}</p>
+                  <p><strong>Catatan:</strong> ${escapeHtml(order.notes)}</p>
+                  ${order.readyDate ? `<p class="text-burgundy-800 font-bold">Tarikh Siap: ${formatDateMs(order.readyDate)}</p>` : ''}
+                </div>
+              </div>
+
+              <div class="pt-3 border-t border-cream-200 grid grid-cols-2 gap-2">
+                <button type="button" onclick="openEditOrderModal('${order.id}')" class="py-2.5 px-3 rounded-xl bg-cream-100 hover:bg-cream-200 text-charcoal-900 font-bold text-xs flex items-center justify-center gap-1.5">
+                  <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+                  <span>Edit / Status</span>
+                </button>
+                <button type="button" onclick="openInvoiceModal('${order.id}')" class="py-2.5 px-3 rounded-xl burgundy-gradient text-white font-bold text-xs shadow flex items-center justify-center gap-1.5">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5 text-rose-light"></i>
+                  <span>Invois & Kongsi</span>
+                </button>
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+      refreshIcons();
+    }
+
+    function openEditOrderModal(orderId) {
+      const order = ordersData.find((o) => o.id === orderId);
+      if (!order) return;
+
+      document.getElementById('eo-id').value = order.id;
+      document.getElementById('eo-ref').textContent = order.id;
+      document.getElementById('eo-name').value = order.name;
+      document.getElementById('eo-phone').value = order.phone;
+      document.getElementById('eo-service').value = order.serviceName;
+      document.getElementById('eo-status').value = order.status;
+      document.getElementById('eo-final-price').value = order.finalPrice !== null ? order.finalPrice : order.estimatedPrice;
+      document.getElementById('eo-ready-date').value = order.readyDate || order.neededDate;
+      document.getElementById('eo-notes').value = order.notes;
+      document.getElementById('eo-tailor-note').value = order.tailorNote || '';
+
+      openModal('modal-edit-order');
+    }
+
+    function saveEditedOrder(e) {
+      e.preventDefault();
+      const id = document.getElementById('eo-id').value;
+      const idx = ordersData.findIndex((o) => o.id === id);
+      if (idx === -1) return;
+
+      ordersData[idx].name = document.getElementById('eo-name').value.trim();
+      ordersData[idx].phone = document.getElementById('eo-phone').value.trim();
+      ordersData[idx].serviceName = document.getElementById('eo-service').value.trim();
+      ordersData[idx].status = document.getElementById('eo-status').value;
+      ordersData[idx].finalPrice = parseFloat(document.getElementById('eo-final-price').value) || 0;
+      ordersData[idx].readyDate = document.getElementById('eo-ready-date').value;
+      ordersData[idx].notes = document.getElementById('eo-notes').value.trim();
+      ordersData[idx].tailorNote = document.getElementById('eo-tailor-note').value.trim();
+
+      safeSaveStorage();
+      updatePendingBadge();
+      renderAdminOrdersList();
+      closeModal('modal-edit-order');
+      showToast(`Tempahan ${id} berjaya dikemas kini!`, 'success');
+    }
+
+    // =========================================================
+    // INVOIS PELANGGAN & PERKONGSIAN MUDAH OLEH ADMIN
+    // =========================================================
+    function generateToken() {
+      return Math.random().toString(36).substring(2, 9).toUpperCase();
+    }
+
+    function ensureOrderInvoice(order) {
+      if (!order.invoice) {
+        const defaultBase = order.finalPrice !== null ? Number(order.finalPrice) : Number(order.estimatedPrice);
+        order.invoice = {
+          invNo: `INV-${order.id}`,
+          token: generateToken(),
+          baseAmount: defaultBase,
+          extraAmount: 0,
+          extraNote: '',
+          depositPaid: 0,
+          payStatus: 'UNPAID',
+          issuedDate: new Date().toISOString().split('T')[0],
+        };
+      }
+      return order.invoice;
+    }
+
+    function openInvoiceModal(orderId) {
+      const idx = ordersData.findIndex((o) => o.id === orderId);
+      if (idx === -1) return;
+
+      activeInvoiceId = orderId;
+      const inv = ensureOrderInvoice(ordersData[idx]);
+      safeSaveStorage();
+
+      document.getElementById('inv-modal-no').textContent = inv.invNo;
+      document.getElementById('inv-base').value = inv.baseAmount;
+      document.getElementById('inv-extra').value = inv.extraAmount;
+      document.getElementById('inv-deposit').value = inv.depositPaid;
+      document.getElementById('inv-extra-note').value = inv.extraNote || '';
+      document.getElementById('inv-pay-status').value = inv.payStatus || 'UNPAID';
+
+      refreshInvoiceModalPreview();
+      openModal('modal-invoice-admin');
+    }
+
+    function getDraftInvoiceFromInputs(existingInv) {
+      return {
+        ...existingInv,
+        baseAmount: parseFloat(document.getElementById('inv-base').value) || 0,
+        extraAmount: parseFloat(document.getElementById('inv-extra').value) || 0,
+        depositPaid: parseFloat(document.getElementById('inv-deposit').value) || 0,
+        extraNote: document.getElementById('inv-extra-note').value.trim(),
+        payStatus: document.getElementById('inv-pay-status').value,
+      };
+    }
+
+    function refreshInvoiceModalPreview() {
+      const order = ordersData.find((o) => o.id === activeInvoiceId);
+      if (!order || !order.invoice) return;
+      const draftInv = getDraftInvoiceFromInputs(order.invoice);
+
+      document.getElementById('inv-modal-document').innerHTML = renderSharedInvoiceCard(order, draftInv);
+      document.getElementById('btn-share-invoice-wa').href = buildInvoiceWhatsAppUrl(order, draftInv);
+      refreshIcons();
+    }
+
+    function saveInvoiceForOrder() {
+      const idx = ordersData.findIndex((o) => o.id === activeInvoiceId);
+      if (idx === -1) return;
+
+      const updatedInv = getDraftInvoiceFromInputs(ensureOrderInvoice(ordersData[idx]));
+      ordersData[idx].invoice = updatedInv;
+      ordersData[idx].finalPrice = Number(updatedInv.baseAmount) + Number(updatedInv.extraAmount);
+
+      safeSaveStorage();
+      renderAdminOrdersList();
+      refreshInvoiceModalPreview();
+      showToast(`Invois ${updatedInv.invNo} berjaya disimpan!`, 'success');
+    }
+
+    function buildCustomerInvoiceLink(order, inv) {
+      return `${getCleanBaseUrl()}?inv=${encodeURIComponent(inv.invNo)}&token=${encodeURIComponent(inv.token)}`;
+    }
+
+    function buildInvoiceShareSummaryText(order, inv) {
+      const total = Number(inv.baseAmount) + Number(inv.extraAmount);
+      const balance = Math.max(0, total - Number(inv.depositPaid));
+      const link = buildCustomerInvoiceLink(order, inv);
+
+      return (
+        `*INVOIS RASMI — ${settingsData.shopName}*\n` +
+        `No. Invois: ${inv.invNo} (Kod: ${order.id})\n` +
+        `Pelanggan: ${order.name}\n` +
+        `Servis: ${order.serviceName}\n` +
+        `Jumlah Keseluruhan: RM ${total.toFixed(2)}\n` +
+        `Deposit Dibayar: RM ${Number(inv.depositPaid).toFixed(2)}\n` +
+        `Baki Perlu Dibayar: RM ${inv.payStatus === 'PAID' ? '0.00' : balance.toFixed(2)}\n` +
+        `Status Bayaran: ${inv.payStatus}\n` +
+        `Link Invois Khas Anda: ${link}`
+      );
+    }
+
+    function buildInvoiceWhatsAppUrl(order, inv) {
+      const wa = formatWhatsAppDigits(order.phone);
+      const text = buildInvoiceShareSummaryText(order, inv);
+      return `https://wa.me/${wa}?text=${encodeURIComponent(text)}`;
+    }
+
+    function copyShareableInvoiceLink() {
+      saveInvoiceForOrder();
+      const order = ordersData.find((o) => o.id === activeInvoiceId);
+      if (!order || !order.invoice) return;
+      const link = buildCustomerInvoiceLink(order, order.invoice);
+      copyToClipboard(link, `Link invois khas (${order.invoice.invNo}) disalin untuk dikongsi kepada pelanggan!`);
+    }
+
+    function copyShareableInvoiceText() {
+      saveInvoiceForOrder();
+      const order = ordersData.find((o) => o.id === activeInvoiceId);
+      if (!order || !order.invoice) return;
+      const text = buildInvoiceShareSummaryText(order, order.invoice);
+      copyToClipboard(text, `Ringkasan & link invois ${order.invoice.invNo} berjaya disalin!`);
+    }
+
+    function renderSharedInvoiceCard(order, inv) {
+      const total = Number(inv.baseAmount) + Number(inv.extraAmount);
+      const balance = Math.max(0, total - Number(inv.depositPaid));
+
+      let statusLabel = 'BELUM LUNAS';
+      let statusCls = 'bg-amber-100 text-amber-900';
+      if (inv.payStatus === 'PAID') {
+        statusLabel = 'LUNAS / DIBAYAR PENUH';
+        statusCls = 'bg-emerald-100 text-emerald-900';
+      } else if (inv.payStatus === 'DEPOSIT') {
+        statusLabel = 'DEPOSIT DITERIMA';
+        statusCls = 'bg-rose-light text-burgundy-900';
+      }
+
+      return `
+        <div class="bg-white rounded-2xl border border-cream-200 p-4 sm:p-5 space-y-4 text-xs">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3 border-b border-cream-200 pb-3.5">
+            <div>
+              <h4 class="font-serif text-xl font-bold text-burgundy-900">${escapeHtml(settingsData.shopName)}</h4>
+              <p class="text-[10px] font-bold uppercase tracking-widest text-charcoal-700">${escapeHtml(settingsData.tagline)}</p>
+              <p class="text-[11px] text-charcoal-700 mt-1">WhatsApp: +${escapeHtml(formatWhatsAppDigits(settingsData.whatsapp))}</p>
+            </div>
+            <div class="sm:text-right space-y-1">
+              <span class="font-serif text-lg font-bold text-charcoal-900 block">INVOIS RASMI</span>
+              <span class="font-mono font-bold text-burgundy-800 block">${escapeHtml(inv.invNo)}</span>
+              <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${statusCls}">${statusLabel}</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-cream-50 p-3 rounded-xl border border-cream-200">
+            <div>
+              <span class="text-[10px] font-bold uppercase text-charcoal-700 block">Kepada:</span>
+              <strong class="text-sm text-charcoal-900 block">${escapeHtml(order.name)}</strong>
+              <span class="text-charcoal-700">${escapeHtml(order.phone)}</span>
+            </div>
+            <div class="sm:text-right">
+              <span class="text-[10px] font-bold uppercase text-charcoal-700 block">Rujukan Tempahan:</span>
+              <strong class="font-mono text-sm text-charcoal-900 block">${escapeHtml(order.id)}</strong>
+              <span class="text-charcoal-700">Tarikh Invois: ${formatDateMs(inv.issuedDate)}</span>
+            </div>
+          </div>
+
+          <div class="divide-y divide-cream-200 border-y border-cream-200">
+            <div class="py-2.5 flex items-start justify-between gap-3">
+              <div>
+                <strong class="text-charcoal-900 block">${escapeHtml(order.serviceName)}</strong>
+                <span class="text-charcoal-700">Ukuran: ${escapeHtml(order.measureMethod)}</span>
+              </div>
+              <strong class="text-charcoal-900 shrink-0">RM ${Number(inv.baseAmount).toFixed(2)}</strong>
+            </div>
+            ${
+              Number(inv.extraAmount) > 0
+                ? `<div class="py-2.5 flex items-start justify-between gap-3">
+                     <div>
+                       <strong class="text-charcoal-900 block">Caj Tambahan</strong>
+                       <span class="text-charcoal-700">${escapeHtml(inv.extraNote || 'Kemasan / Lining / Manik')}</span>
+                     </div>
+                     <strong class="text-charcoal-900 shrink-0">RM ${Number(inv.extraAmount).toFixed(2)}</strong>
+                   </div>`
+                : ''
+            }
+          </div>
+
+          <div class="flex flex-col items-end space-y-1">
+            <div class="w-full sm:w-60 flex justify-between">
+              <span class="text-charcoal-700">Jumlah Keseluruhan:</span>
+              <strong class="text-charcoal-900">RM ${total.toFixed(2)}</strong>
+            </div>
+            <div class="w-full sm:w-60 flex justify-between text-emerald-800">
+              <span>Deposit Dibayar:</span>
+              <strong>- RM ${Number(inv.depositPaid).toFixed(2)}</strong>
+            </div>
+            <div class="w-full sm:w-60 flex justify-between bg-rose-light/60 px-3 py-1.5 rounded-xl border border-rose-dusty/40 text-burgundy-900 font-extrabold text-sm">
+              <span>BAKI PERLU DIBAYAR:</span>
+              <span>RM ${inv.payStatus === 'PAID' ? '0.00' : balance.toFixed(2)}</span>
+            </div>
+          </div>
+
+          ${
+            settingsData.paymentInfo
+              ? `<div class="bg-cream-50 p-3 rounded-xl border border-cream-200 text-[11px] text-charcoal-800">
+                   <strong class="text-burgundy-900">Info Bayaran:</strong> ${escapeHtml(settingsData.paymentInfo)}
+                 </div>`
+              : ''
+          }
+        </div>
+      `;
+    }
+
+    // =========================================================
+    // PENGURUSAN SERVIS & HARGA ADMIN
+    // =========================================================
+    function renderAdminServicesList() {
+      const container = document.getElementById('admin-services-list');
+      container.innerHTML = servicesData
+        .map(
+          (srv) => `
+          <div class="bg-cream-50 rounded-2xl border border-cream-200 p-4 flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-bold text-sm text-charcoal-900">${escapeHtml(srv.name)}</h4>
+                <span class="px-2.5 py-1 rounded-lg bg-rose-light text-burgundy-900 font-extrabold text-xs shrink-0">
+                  RM ${Number(srv.price).toFixed(0)}
+                </span>
+              </div>
+              <p class="text-xs text-charcoal-700 mt-1">${escapeHtml(srv.desc)}</p>
+            </div>
+            <div class="flex gap-2 pt-2 border-t border-cream-200">
+              <button type="button" onclick="openServiceModal('${srv.id}')" class="flex-1 py-1.5 rounded-xl bg-white hover:bg-cream-200 text-charcoal-900 font-bold text-xs border border-cream-200">
+                Edit Harga
+              </button>
+              <button type="button" onclick="deleteService('${srv.id}')" class="px-3 py-1.5 rounded-xl bg-white hover:bg-red-50 text-burgundy-800 font-bold text-xs border border-cream-200">
+                Padam
+              </button>
+            </div>
+          </div>
+        `
+        )
+        .join('');
+    }
+
+    function openServiceModal(serviceId = null) {
+      if (serviceId) {
+        const srv = servicesData.find((s) => s.id === serviceId);
+        if (!srv) return;
+        document.getElementById('srv-modal-heading').textContent = 'Edit Servis & Harga';
+        document.getElementById('srv-id-input').value = srv.id;
+        document.getElementById('srv-name-input').value = srv.name;
+        document.getElementById('srv-price-input').value = srv.price;
+        document.getElementById('srv-desc-input').value = srv.desc;
+      } else {
+        document.getElementById('srv-modal-heading').textContent = 'Tambah Servis Baharu';
+        document.getElementById('srv-id-input').value = '';
+        document.getElementById('srv-name-input').value = '';
+        document.getElementById('srv-price-input').value = '';
+        document.getElementById('srv-desc-input').value = '';
+      }
+      openModal('modal-service-edit');
+    }
+
+    function saveServiceForm(e) {
+      e.preventDefault();
+      const id = document.getElementById('srv-id-input').value;
+      const name = document.getElementById('srv-name-input').value.trim();
+      const price = parseFloat(document.getElementById('srv-price-input').value) || 0;
+      const desc = document.getElementById('srv-desc-input').value.trim();
+
+      if (id) {
+        const idx = servicesData.findIndex((s) => s.id === id);
+        if (idx !== -1) servicesData[idx] = { id, name, price, desc };
+      } else {
+        servicesData.push({ id: `srv-${Date.now()}`, name, price, desc });
+      }
+
+      safeSaveStorage();
+      renderServicesGrid();
+      populateServiceSelect();
+      renderAdminServicesList();
+      closeModal('modal-service-edit');
+      showToast('Senarai servis & harga berjaya dikemas kini!', 'success');
+    }
+
+    function deleteService(serviceId) {
+      if (servicesData.length <= 1) {
+        showToast('Sekurang-kurangnya satu servis mesti kekal dalam senarai.', 'warning');
+        return;
+      }
+      servicesData = servicesData.filter((s) => s.id !== serviceId);
+      safeSaveStorage();
+      renderServicesGrid();
+      populateServiceSelect();
+      renderAdminServicesList();
+      showToast('Servis dipadam.', 'info');
+    }
+
+    // =========================================================
+    // TETAPAN BUTIK, POSTER & GAYA TULISAN ADMIN
+    // =========================================================
+    function loadAdminSettingsForm() {
+      document.getElementById('admin-poster-preview').src = settingsData.posterImage || '1001079099.jpg';
+      document.getElementById('set-headline').value = settingsData.mainHeadline;
+      document.getElementById('set-subheadline').value = settingsData.subHeadline;
+      document.getElementById('set-font-preset').value = settingsData.fontPreset || 'playfair';
+      document.getElementById('set-title-size').value = settingsData.titleSize || 23;
+      document.getElementById('set-whatsapp').value = settingsData.whatsapp;
+      document.getElementById('set-hook').value = settingsData.hookText;
+      document.getElementById('set-welcome').value = settingsData.welcomeText;
+      document.getElementById('set-address').value = settingsData.address;
+      document.getElementById('set-hours').value = settingsData.hours;
+      document.getElementById('set-payment').value = settingsData.paymentInfo || '';
+    }
+
+    function handlePosterFileUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (evt) => {
+        settingsData.posterImage = evt.target.result;
+        document.getElementById('admin-poster-preview').src = settingsData.posterImage;
+        document.getElementById('hero-poster-img').src = settingsData.posterImage;
+        safeSaveStorage();
+        showToast('Poster utama berjaya dikemas kini!', 'success');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetPosterToDefault() {
+      settingsData.posterImage = DEFAULT_SETTINGS.posterImage;
+      document.getElementById('admin-poster-preview').src = settingsData.posterImage;
+      document.getElementById('hero-poster-img').src = settingsData.posterImage;
+      safeSaveStorage();
+      showToast('Poster dikembalikan ke gambar lalai.', 'info');
+    }
+
+    function handleSaveSettings(e) {
+      e.preventDefault();
+      settingsData.mainHeadline = document.getElementById('set-headline').value.trim() || DEFAULT_SETTINGS.mainHeadline;
+      settingsData.subHeadline = document.getElementById('set-subheadline').value.trim() || DEFAULT_SETTINGS.subHeadline;
+      settingsData.fontPreset = document.getElementById('set-font-preset').value;
+      settingsData.titleSize = parseInt(document.getElementById('set-title-size').value, 10) || 23;
+      settingsData.whatsapp = document.getElementById('set-whatsapp').value.trim() || DEFAULT_SETTINGS.whatsapp;
+      settingsData.hookText = document.getElementById('set-hook').value.trim();
+      settingsData.welcomeText = document.getElementById('set-welcome').value.trim();
+      settingsData.address = document.getElementById('set-address').value.trim();
+      settingsData.hours = document.getElementById('set-hours').value.trim();
+      settingsData.paymentInfo = document.getElementById('set-payment').value.trim();
+
+      safeSaveStorage();
+      applySettingsToPage();
+      showToast('Tetapan butik, poster & gaya tulisan berjaya disimpan!', 'success');
+    }
+
+    // =========================================================
+    // UTILITI MODAL, SALIN PAUTAN & TOAST
+    // =========================================================
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+        refreshIcons();
+      }
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+
+    function getCleanBaseUrl() {
+      return window.location.href.split('?')[0].split('#')[0];
+    }
+
+    function formatWhatsAppDigits(phone) {
+      let digits = String(phone || '').replace(/\D/g, '');
+      if (digits.startsWith('0')) digits = '6' + digits;
+      return digits;
+    }
+
+    function copyShopLinkOnly() {
+      copyToClipboard(getCleanBaseUrl(), 'Link utama sistem Izuanatailor disalin!');
+    }
+
+    function copyShopPromoWithLink() {
+      const link = getCleanBaseUrl();
+      const promo =
+        `✨ *${settingsData.shopName} — ${settingsData.tagline}* ✨\n` +
+        `Lihat servis, harga & isi borang tempahan jahitan anda di sini:\n${link}`;
+      copyToClipboard(promo, 'Teks promosi & link sistem disalin untuk WhatsApp!');
+    }
+
+    function copyToClipboard(text, message) {
+      try {
+        const tempArea = document.createElement('textarea');
+        tempArea.value = text;
+        tempArea.setAttribute('readonly', '');
+        tempArea.style.position = 'fixed';
+        tempArea.style.opacity = '0';
+        document.body.appendChild(tempArea);
+        tempArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempArea);
+        showToast(message, 'success');
+      } catch (err) {
+        showToast('Gagal menyalin ke papan klip.', 'warning');
+      }
+    }
+
+    function formatDateMs(dateStr) {
+      if (!dateStr) return '-';
+      const parts = String(dateStr).split('-');
+      if (parts.length !== 3) return dateStr;
+      const months = ['Jan', 'Feb', 'Mac', 'Apr', 'Mei', 'Jun', 'Jul', 'Ogos', 'Sep', 'Okt', 'Nov', 'Dis'];
+      const mIdx = parseInt(parts[1], 10) - 1;
+      return `${parseInt(parts[2], 10)} ${months[mIdx] || parts[1]} ${parts[0]}`;
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function showToast(msg, type = 'success') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const toast = document.createElement('div');
+      const tone =
+        type === 'warning'
+          ? 'bg-burgundy-800 text-white border border-rose-dusty/40'
+          : 'bg-charcoal-900 text-cream-50 border border-rose-dusty/40';
+      toast.className = `${tone} px-4 py-3 rounded-2xl shadow-xl text-xs font-semibold flex items-center gap-2 pointer-events-auto transition-opacity duration-300`;
+      toast.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 text-rose-dusty shrink-0"></i><span>${escapeHtml(msg)}</span>`;
+      container.appendChild(toast);
+      refreshIcons();
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+  </script>
+</body>
+</html>
